@@ -36,47 +36,31 @@ vector<long long> printFirstNegativeInteger(long long int A[], long long int N, 
     vector<long long> ans;
     int negative = -1;
 
-    // process first window
-    for (int i = 0; i < K; i++)
+    long long i = 0;
+    long long j = 0;
+
+    while (j < N)
     {
-        if (A[i] < 0)
+        long long _number = A[j];
+        if (_number < 0)
         {
-            dq.push_back(i);
+            dq.push_back(_number);
         }
-    }
-
-    // push ans for FIRST window
-    if (dq.size() > 0)
-    {
-        ans.push_back(A[dq.front()]);
-    }
-    else
-    {
-        ans.push_back(0);
-    }
-
-    // now process for remaining windows
-    for (int i = K; i < N; i++)
-    {
-        // first pop out of window element
-
-        if (!dq.empty() && (i - dq.front()) >= K)
+        if (j - i + 1 < K)
         {
-            dq.pop_front();
-        }
-
-        // then push current element
-        if (A[i] < 0)
-            dq.push_back(i);
-
-        // put in ans
-        if (dq.size() > 0)
-        {
-            ans.push_back(A[dq.front()]);
+            j++;
         }
         else
         {
-            ans.push_back(0);
+            long long _ans = (!dq.empty()) ? dq.front() : 0;
+            ans.push_back(_ans);
+
+            if (dq.front() == A[i])
+            {
+                dq.pop_front();
+            }
+            i++;
+            j++;
         }
     }
     return ans;

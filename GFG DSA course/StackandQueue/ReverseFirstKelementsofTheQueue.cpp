@@ -26,24 +26,22 @@ void printVec(vector<T> &vec)
 }
 queue<int> modifyQueue(queue<int> q, int k)
 {
-    // step 1: make a stack and fetch k elements from the queue
     stack<int> st;
+    int n = q.size();
     for (int i = 0; i < k; i++)
     {
         int frontele = q.front();
         q.pop();
         st.push(frontele);
     }
-
-    // step 2: again push all the elements in the queue
     while (!st.empty())
     {
-        q.push(st.top());
+        int top = st.top();
         st.pop();
+        q.push(top);
     }
 
-    // step 3: get all the n-k elements from the front now and put them at back
-    for (int i = 0; i < q.size() - k; i++)
+    for (int i = 0; i < n - k; i++)
     {
         int frontele = q.front();
         q.pop();
