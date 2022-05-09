@@ -1,0 +1,124 @@
+int a,s;
+    cin>>a>>s;
+    vi ans;
+    while(s){
+        int x=s%10;
+        int y=a%10;
+ 
+        if(x<y){
+
+            x=s%100;
+            if(x-y>9){
+            cout<<-1<<endl;
+            return;
+               }
+        if(x<y){
+            cout<<-1<<endl;
+            return;
+        }
+            ans.pb(x-y);
+            s/=100;
+            a/=10;continue;
+}
+
+        ans.pb(x-y);
+        s/=10;
+        a/=10;
+ 
+ }
+ 
+    if(s==0&&a!=0){
+        cout<<-1<<endl;
+        return;
+    }
+ 
+ 
+ 
+    reverse(all(ans));
+ 
+    int final=0;
+    fo(i,ans.size()){
+        final=final*10+ans[i];
+    }
+    cout<<final<<endl;
+ 
+}
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+ll countd(ll x){
+    ll cnt=0;
+    while(x!=0){
+        cnt++;
+        x=x/10;
+    }
+    return cnt;
+}
+void solve(){
+    ll t;
+    cin>>t;
+    while(t--){
+        ll a,s;
+        cin>>a>>s;
+        list<ll>b;
+        bool can=true;
+        while(s!=0){
+            ll last_digit_a=a%10;
+            ll last_digit_s=s%10;
+            if(last_digit_a<=last_digit_s){
+                ll ans=last_digit_s-last_digit_a;
+                b.push_front(ans);
+                a=a/10;
+                s=s/10;
+                debug(a);
+                debug(s);
+                debug(ans);
+            }
+            else{
+                ll last_twodigitof_s=s%100;
+                ll ans=last_twodigitof_s-last_digit_a;
+                if( ans<0 || countd(ans)==2){
+                    can=false;
+                    break;
+                }
+                else{
+                    b.push_front(ans);
+                    a=a/10;
+                    s=s/100;
+                    debug(a);
+                    debug(s);
+                    debug(ans);
+                }
+            }
+        }
+        if(!can){
+            cout<<-1<<nline;
+            continue;
+        }
+        if(a!=0 && s==0 ){
+            cout<<-1<<nline;
+            continue;
+        }
+        // if(s!=0 && a==0){
+        //     cout<<s;
+        //     for(auto i : b){
+        //         cout<<i;
+        //     }
+        //     cout<<nline;
+        //     continue;
+        // }
+        for(auto i : b){
+            if(i!=0){
+                break;
+            }
+            else{
+                b.pop_front();
+            }
+        }
+        for(auto i : b){
+            cout<<i;
+        }
+        cout<<nline;
+    }
+}
