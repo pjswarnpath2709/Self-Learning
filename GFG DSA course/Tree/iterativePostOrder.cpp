@@ -65,19 +65,34 @@ void iterativePostOrder1Stack(btnode *root)
     {
         if (curr != nullptr)
         {
+            // iska left subtree stack ke andar push karo
             st.push(curr);
             curr = curr->left;
         }
         else
         {
+            /*
+             *  ab apna jo left subtree hai woh poora ke poora
+             * stack ke andar hoga , so now it's time to explore right
+             * subtree's of all nodes present in the stack
+             *
+             */
             btnode *temp = st.top()->right;
             if (temp == nullptr)
             {
+                // agar right bhi null hai yani apan leaf node pe khade hai
+                // ise toh apan ko print karna hai
                 temp = st.top();
                 st.pop();
                 cout << temp->data << " ";
                 while (!st.empty() && temp == st.top()->right)
                 {
+                    /*
+                       ab jab tak temp kisi ka right child hai yani jo
+                       temp ka parent rahega woh already stack mein present hoga
+                       aur uska right side explore ho chuka hoga already therefore ab
+                       usko nikal ke print kardo aur uske root pe le ao
+                    */
                     temp = st.top();
                     st.pop();
                     cout << temp->data << " ";
@@ -85,7 +100,9 @@ void iterativePostOrder1Stack(btnode *root)
             }
             else
             {
-                curr = temp;
+                // iska left tree stack ke andar push karo
+                curr = temp; // yaha pe apan ek kadam right mein agaye aur ise stack
+                // mein push kardiya
             }
         }
     }
