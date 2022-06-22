@@ -70,6 +70,4 @@ int main()
     cout << "The maximum width of the Binary Tree is " << maxWidth;
 
     return 0;
-
-    return 0;
 }
