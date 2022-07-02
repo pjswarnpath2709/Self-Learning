@@ -179,56 +179,38 @@ bool is_prime(int n)
     }
     return true;
 }
-/*------------------------------------------------------------------------------------------------------------------------*/
-bool _isAllCorrect(vector<string> &tests)
-{
-    for (auto test : tests)
-    {
-        for (auto ele : test)
-        {
-            if (ele != '1')
-            {
-                return false;
-            }
-        }
-    }
-    return true;
-}
-bool _isAllWrong(vector<string> &tests)
-{
-    bool hasZero = false;
-    for (auto test : tests)
-    {
-        for (auto ele : test)
-        {
-            if (ele == '0')
-            {
-                hasZero = true;
-            }
-        }
-    }
 
-    return hasZero;
+int gcd_Int(int a, int b)
+{
+    int result = min(a, b);
+    while (result > 0)
+    {
+        if (a % result == 0 && b % result == 0)
+        {
+            break;
+        }
+        result;
+    }
+    return result;
 }
+
+ll gcd_Long(ll a, ll b)
+{
+    ll result = min(a, b);
+    while (result > 0)
+    {
+        if (a % result == 0 && b % result == 0)
+        {
+            break;
+        }
+        result--;
+    }
+    return result;
+}
+/*------------------------------------------------------------------------------------------------------------------------*/
+
 void solve()
 {
-    ll n, m;
-    cin >> n >> m;
-    vector<string> corrects;
-    vector<string> wrongs;
-    for (ll i = 0; i < n; i++)
-    {
-        string type, test;
-        cin >> type >> test;
-        if (type == "correct")
-        {
-            corrects.push_back(test);
-        }
-        else
-        {
-            wrongs.push_back(test);
-        }
-    }
 }
 /*----------------------------------------------------------------------------------------------------------------------------*/
 int32_t main()
