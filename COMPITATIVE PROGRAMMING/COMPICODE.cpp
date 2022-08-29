@@ -164,13 +164,13 @@ int power_function(int n, int j)
 }
 
 /*------------------------------------------------------------------------------------------------------------------------*/
-bool is_prime(int n)
+bool is_prime(ll n)
 {
     if (n == 0 || n == 1)
     {
         return false;
     }
-    for (int i = 2; i * i <= n; i++)
+    for (ll i = 2; i * i <= n; i++)
     {
         if (n % i == 0)
         {
@@ -211,25 +211,47 @@ ll gcd_Long(ll a, ll b)
 
 void solve()
 {
-    ll n, s;
-    cin >> n >> s;
-
-    ll rem = s % (n * n);
-
-    cout << (s - rem) / (n * n) << "\n";
+    string s;
+    cin >> s;
+    set<char> st;
+    for (int i = 0; i < s.length(); i++)
+    {
+        st.insert(s[i]);
+    }
+    if (st.size() % 2 == 1)
+    {
+        cout << "IGNORE HIM!"
+             << "\n";
+    }
+    else
+    {
+        cout << "CHAT WITH HER!"
+             << "\n";
+    }
 }
 
 /*----------------------------------------------------------------------------------------------------------------------------*/
+// int32_t main()
+// {
+// #ifdef ONLINE_JUDGE
+//     freopen("Error.txt", "w", stderr);
+// #endif
+//     fastio();
+//     int t = 0;
+//     cin >> t;
+//     for (int test_count = 0; test_count < t; test_count++)
+//     {
+//         solve();
+//     }
+// }
+
+//////-------------------------------------------------------------------------------------------------------------------------------//////
+
 int32_t main()
 {
 #ifdef ONLINE_JUDGE
     freopen("Error.txt", "w", stderr);
 #endif
     fastio();
-    int t = 0;
-    cin >> t;
-    for (int test_count = 0; test_count < t; test_count++)
-    {
-        solve();
-    }
+    solve();
 }

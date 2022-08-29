@@ -2,32 +2,22 @@
 
 #include <bits/stdc++.h>
 using namespace std;
-long long backbenchersAndBugs(int N, vector<int> C)
-{
-    long long sum = 0;
-    for (int i = 0; i < N; i++)
-    {
-        sum += C[i];
-    }
-
-    return sum;
-}
 int main()
 {
-    int t;
-    cin >> t;
-    while (t--)
-    {
-        int N;
-        cin >> N;
-        vector<int> choices(N);
-        for (int i = 0; i < N; i++)
-        {
-            cin >> choices[i];
-        }
+    string s;
+    cin >> s;
 
-        cout << backbenchersAndBugs(N, choices) << "\n";
+    unordered_map<char, int> mp;
+    for (int i = 0; i < s.length(); i++)
+    {
+        mp[s[i]]++;
     }
 
+    int maxi = 0;
+    for (auto ele : mp)
+    {
+        maxi = max(ele.second, maxi);
+    }
+    cout << maxi << "\n";
     return 0;
 }
