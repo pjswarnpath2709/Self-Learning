@@ -211,47 +211,45 @@ ll gcd_Long(ll a, ll b)
 
 void solve()
 {
-    string s;
-    cin >> s;
-    set<char> st;
-    for (int i = 0; i < s.length(); i++)
+    ll n;
+    cin >> n;
+    vll vec(n);
+    in_vector(vec, n);
+    set<int> st(vec.begin(), vec.end());
+    if (st.size() == n && n % 2 == 1)
     {
-        st.insert(s[i]);
-    }
-    if (st.size() % 2 == 1)
-    {
-        cout << "IGNORE HIM!"
+        cout << "NO"
              << "\n";
     }
     else
     {
-        cout << "CHAT WITH HER!"
+        cout << "YES"
              << "\n";
     }
 }
 
 /*----------------------------------------------------------------------------------------------------------------------------*/
-// int32_t main()
-// {
-// #ifdef ONLINE_JUDGE
-//     freopen("Error.txt", "w", stderr);
-// #endif
-//     fastio();
-//     int t = 0;
-//     cin >> t;
-//     for (int test_count = 0; test_count < t; test_count++)
-//     {
-//         solve();
-//     }
-// }
-
-//////-------------------------------------------------------------------------------------------------------------------------------//////
-
 int32_t main()
 {
 #ifdef ONLINE_JUDGE
     freopen("Error.txt", "w", stderr);
 #endif
     fastio();
-    solve();
+    int t = 0;
+    cin >> t;
+    for (int test_count = 0; test_count < t; test_count++)
+    {
+        solve();
+    }
 }
+
+//////-------------------------------------------------------------------------------------------------------------------------------//////
+
+// int32_t main()
+// {
+// #ifdef ONLINE_JUDGE
+//     freopen("Error.txt", "w", stderr);
+// #endif
+//     fastio();
+//     solve();
+//}
