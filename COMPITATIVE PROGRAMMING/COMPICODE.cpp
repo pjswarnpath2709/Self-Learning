@@ -12,6 +12,7 @@
 #define nline "\n"
 #define vi vector<int>
 #define vll vector<long long>
+#define vc vector<char>
 #define pi pair<int, int>
 #define pll pair<long long, long long>
 #define all_vec vec.begin(), vec.end()
@@ -208,24 +209,111 @@ ll gcd_Long(ll a, ll b)
     return result;
 }
 /*------------------------------------------------------------------------------------------------------------------------*/
+void printGood(vector<vc> &good)
+{
+    for (int i = 1; i < good.size(); i++)
+    {
+        for (int j = 1; j < good[i].size(); j++)
+        {
+            cout << good[i][j];
+        }
+        cout << "\n";
+    }
+    cout << "\n";
+}
+bool inGrid(int row, int col, int n)
+{
+    if (row >= 1 && row <= n && col >= 1 && col <= n)
+    {
+        return true;
+    }
+    return false;
+}
+bool horizontalContainsX(vector<vc> good, int ri, int ci, int k)
+{
 
+    for (int col = ci + 1; col < ci + k; col++)
+    {
+        if (inGrid(ri, col, good.size() - 1))
+        {
+            if (good[ri][col] == 'X')
+            {
+                return true;
+            }
+        }
+    }
+    for (int col = ci - 1; col > ci - k; col--)
+    {
+        if (inGrid(ri, col, good.size() - 1))
+        {
+            if (good[ri][col] == 'X')
+            {
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
+bool verticalContainsX(vector<vc> &good, int r, int c, int k)
+{
+
+    for (int row = r + 1; row < r + k; row++)
+    {
+        if (inGrid(row, c, good.size() - 1))
+        {
+            if (good[row][c] == 'X')
+            {
+                return true;
+            }
+        }
+    }
+    for (int row = r - 1; row > r - k; row--)
+    {
+        if (inGrid(row, c, good.size() - 1))
+        {
+            if (good[row][c] == 'X')
+            {
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
 void solve()
 {
-    ll n;
-    cin >> n;
-    vll vec(n);
-    in_vector(vec, n);
-    set<int> st(vec.begin(), vec.end());
-    if (st.size() == n && n % 2 == 1)
+    ll n, k, r, c;
+    cin >> n >> k >> r >> c;
+    vector<vc> good(n + 1);
+    for (int i = 1; i <= n; i++)
     {
-        cout << "NO"
-             << "\n";
+        vector<char> vec(n + 1, '.');
+        good[i] = vec;
     }
-    else
+    good[r][c] = 'X';
+
+    for (int row = r; row <= n; row++)
     {
-        cout << "YES"
-             << "\n";
+        for (int col = c; col <= n; col++)
+        {
+            if (good[row][col] == '.' && !horizontalContainsX(good, row, col, k) && !verticalContainsX(good, row, col, k))
+            {
+                good[row][col] = 'X';
+            }
+        }
     }
+    for (int row = r; row >= 1; row--)
+    {
+        for (int col = c; col >= 1; col--)
+        {
+            if (good[row][col] == '.' && !horizontalContainsX(good, row, col, k) && !verticalContainsX(good, row, col, k))
+            {
+                good[row][col] = 'X';
+            }
+        }
+    }
+    printGood(good);
 }
 
 /*----------------------------------------------------------------------------------------------------------------------------*/

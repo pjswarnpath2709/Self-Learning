@@ -3,11 +3,7 @@ using namespace std;
 
 vector<int> getIndegrees(vector<int> adj[], int V)
 {
-    vector<int> indegrees(V);
-    for (int i = 0; i < V; i++)
-    {
-        indegrees[i] = 0;
-    }
+    vector<int> indegrees(V, 0);
 
     for (int i = 0; i < V; i++)
     {
@@ -51,7 +47,8 @@ bool detectCycleUsingTopoSort(vector<int> adj[], int V)
             {
                 indegrees[ele]--;
             }
-            else if (indegrees[ele] == 0)
+            // else if  will not come as it is undirected graph , hence when the indegree becomes 0 it will not chk for it , that's why my code is failing.
+            if (indegrees[ele] == 0)
             {
 
                 qt.push(ele);
