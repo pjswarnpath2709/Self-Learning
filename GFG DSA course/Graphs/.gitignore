@@ -1,0 +1,8 @@
+*.json
+*.bin
+*.exe
+*.iml
+*.xml
+*.ninja
+*.cmake
+*.txt
