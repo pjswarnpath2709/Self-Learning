@@ -283,37 +283,39 @@ bool verticalContainsX(vector<vc> &good, int r, int c, int k)
 }
 void solve()
 {
-    ll n, k, r, c;
-    cin >> n >> k >> r >> c;
-    vector<vc> good(n + 1);
-    for (int i = 1; i <= n; i++)
+    vll vec(3);
+    in_vector(vec, 3);
+    sort(vec.begin(), vec.end(), greater<int>());
+    int ans = 0;
+    for (int i = 0; i < 3; i++)
     {
-        vector<char> vec(n + 1, '.');
-        good[i] = vec;
+        if (vec[i])
+        {
+            vec[i]--;
+            ans++;
+        }
     }
-    good[r][c] = 'X';
 
-    for (int row = r; row <= n; row++)
+    if (vec[0] && vec[1])
     {
-        for (int col = c; col <= n; col++)
-        {
-            if (good[row][col] == '.' && !horizontalContainsX(good, row, col, k) && !verticalContainsX(good, row, col, k))
-            {
-                good[row][col] = 'X';
-            }
-        }
+        ans++;
+        vec[0]--;
+        vec[1]--;
     }
-    for (int row = r; row >= 1; row--)
+    if (vec[0] && vec[2])
     {
-        for (int col = c; col >= 1; col--)
-        {
-            if (good[row][col] == '.' && !horizontalContainsX(good, row, col, k) && !verticalContainsX(good, row, col, k))
-            {
-                good[row][col] = 'X';
-            }
-        }
+        ans++;
+        vec[0]--;
+        vec[2]--;
     }
-    printGood(good);
+    if (vec[1] && vec[2])
+    {
+        ans++;
+        vec[1]--;
+        vec[2]--;
+    }
+
+    cout << ans << "\n";
 }
 
 /*----------------------------------------------------------------------------------------------------------------------------*/
