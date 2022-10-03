@@ -4,34 +4,37 @@ using namespace std;
 typedef vector<int> vi;
 typedef vector<bool> vb;
 typedef vector<long long> vll;
-void printSSCUtil(vi adj[], vb &visited, vi &disc, vi &low, stack<int> &st, int parent, int src, int &timer, vector<vi> &ssc)
+void printSSCUtil(vi adj[], vb &visited, vi &disc, vi &low, stack<int> &st, vb &stackMember, int parent, int src, int &timer, vector<vi> &ssc)
 {
     visited[src] = true;
     disc[src] = low[src] = timer;
     timer++;
+    st.push(src);
+    stackMember[src] = true;
 
     // ab sarre neighbour ko visit karenge
     for (auto nbr : adj[src])
     {
         if (!visited[nbr])
         {
-            printSSCUtil(adj, visited, disc, low, st, src, nbr, timer, ssc);
+            printSSCUtil(adj, visited, disc, low, st, stackMember, src, nbr, timer, ssc);
             // update the low
             low[src] = min(low[src], low[nbr]);
         }
         // if already visited and it's a backEdge
-        if (visited[src] && parent != src)
+        if (visited[src] && parent != src && stackMember[nbr])
         {
             // backEdge
             low[src] = min(low[src], disc[nbr]);
         }
     }
-    st.push(src);
+
     if (low[src] == disc[src])
     {
         vi ssc_ele;
         while (!st.empty())
         {
+            stackMember[st.top()] = false;
             ssc_ele.push_back(st.top());
             st.pop();
         }
@@ -40,9 +43,10 @@ void printSSCUtil(vi adj[], vb &visited, vi &disc, vi &low, stack<int> &st, int 
 }
 void printSSC(vi adj[], int V)
 {
-    // disc , low , visited , parent , vector<vector<int>> result ,stack
+    // disc , low , visited , parent , vector<vector<int>> result ,stack, stack memeber
     vi disc(V, -1);
     vi low(V, -1);
+    vb stackMember(V, false);
     vb visited(V, false);
     stack<int> st;
     vector<vi> ssc;
@@ -53,7 +57,7 @@ void printSSC(vi adj[], int V)
         if (!visited[i])
         {
 
-            printSSCUtil(adj, visited, disc, low, st, -1, i, timer, ssc);
+            printSSCUtil(adj, visited, disc, low, st, stackMember, -1, i, timer, ssc);
         }
     }
 
