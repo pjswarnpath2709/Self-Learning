@@ -1,0 +1,32 @@
+P1: GET()
+P2: LOGIN()
+P3: VERIFICATION()  
+P4: WSS()
+    P4.1: GET()
+    P4.2: PROJECT ANALYSIS
+         P4.2.1: GET()
+         P4.2.2: FINALISED PROJECT
+         P4.2.3: TEAMS()
+                P4.2.3.1: GET()
+                P4.2.3.2: APPOINT
+                P4.2.3.3: DESIGN
+         P4.2.4: GENERATED REPORTS    
+                 P4.2.4.1: GET()
+                 P4.2.4.2: REPORT1
+                           P4.2.4.2.1: GET()
+                           P4.2.4.2.2: GENERATE()             
+                                       P4.2.4.2.2.1: PHASE TIME
+                                       P4.2.4.2.2.2: TOTAL TIME
+                                       P4.2.4.2.2.3: PRICE
+                           P4.2.4.2.3: PRINT() 
+                 P4.2.4.3: REPORT2
+                           P4.2.4.3.1: GET()
+                           P4.2.4.3.2: GENERATE()
+                                       P4.2.4.3.2.1: TIMESHEET
+                           P4.2.4.3.3: PRINT()
+                 P4.2.4.4: BACK()          
+         P4.2.5: SALARY
+    P4.3: PROJECT STATUS
+    P4.4: EXIT
+P5: EXIT
+                                                             

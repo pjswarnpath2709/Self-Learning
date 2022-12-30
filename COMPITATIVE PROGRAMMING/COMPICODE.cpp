@@ -13,6 +13,7 @@
 #define vi vector<int>
 #define vll vector<long long>
 #define vc vector<char>
+#define vb vector<bool>
 #define pi pair<int, int>
 #define pll pair<long long, long long>
 #define all_vec vec.begin(), vec.end()
@@ -190,7 +191,7 @@ int gcd_Int(int a, int b)
         {
             break;
         }
-        result;
+        result--;
     }
     return result;
 }
@@ -209,114 +210,27 @@ ll gcd_Long(ll a, ll b)
     return result;
 }
 /*------------------------------------------------------------------------------------------------------------------------*/
-void printGood(vector<vc> &good)
-{
-    for (int i = 1; i < good.size(); i++)
-    {
-        for (int j = 1; j < good[i].size(); j++)
-        {
-            cout << good[i][j];
-        }
-        cout << "\n";
-    }
-    cout << "\n";
-}
-bool inGrid(int row, int col, int n)
-{
-    if (row >= 1 && row <= n && col >= 1 && col <= n)
-    {
-        return true;
-    }
-    return false;
-}
-bool horizontalContainsX(vector<vc> good, int ri, int ci, int k)
-{
-
-    for (int col = ci + 1; col < ci + k; col++)
-    {
-        if (inGrid(ri, col, good.size() - 1))
-        {
-            if (good[ri][col] == 'X')
-            {
-                return true;
-            }
-        }
-    }
-    for (int col = ci - 1; col > ci - k; col--)
-    {
-        if (inGrid(ri, col, good.size() - 1))
-        {
-            if (good[ri][col] == 'X')
-            {
-                return true;
-            }
-        }
-    }
-
-    return false;
-}
-bool verticalContainsX(vector<vc> &good, int r, int c, int k)
-{
-
-    for (int row = r + 1; row < r + k; row++)
-    {
-        if (inGrid(row, c, good.size() - 1))
-        {
-            if (good[row][c] == 'X')
-            {
-                return true;
-            }
-        }
-    }
-    for (int row = r - 1; row > r - k; row--)
-    {
-        if (inGrid(row, c, good.size() - 1))
-        {
-            if (good[row][c] == 'X')
-            {
-                return true;
-            }
-        }
-    }
-
-    return false;
-}
 void solve()
 {
-    vll vec(3);
-    in_vector(vec, 3);
-    sort(vec.begin(), vec.end(), greater<int>());
-    int ans = 0;
-    for (int i = 0; i < 3; i++)
+    ll n;
+    cin >> n;
+    if (n % 2 == 1)
     {
-        if (vec[i])
+        for (int i = 0; i < n; i++)
         {
-            vec[i]--;
-            ans++;
+            cout << 1 << " ";
         }
     }
-
-    if (vec[0] && vec[1])
+    else
     {
-        ans++;
-        vec[0]--;
-        vec[1]--;
+        cout << 1 << " " << 3 << " ";
+        for (int i = 0; i < n - 2; i++)
+        {
+            cout << 2 << " ";
+        }
     }
-    if (vec[0] && vec[2])
-    {
-        ans++;
-        vec[0]--;
-        vec[2]--;
-    }
-    if (vec[1] && vec[2])
-    {
-        ans++;
-        vec[1]--;
-        vec[2]--;
-    }
-
-    cout << ans << "\n";
-}
+    cout << "\n";
+};
 
 /*----------------------------------------------------------------------------------------------------------------------------*/
 int32_t main()
@@ -325,12 +239,13 @@ int32_t main()
     freopen("Error.txt", "w", stderr);
 #endif
     fastio();
-    int t = 0;
-    cin >> t;
-    for (int test_count = 0; test_count < t; test_count++)
+    ll test;
+    cin >> test;
+    while (test--)
     {
         solve();
     }
+    // solve();
 }
 
 //////-------------------------------------------------------------------------------------------------------------------------------//////
@@ -342,4 +257,4 @@ int32_t main()
 // #endif
 //     fastio();
 //     solve();
-//}
+// }
