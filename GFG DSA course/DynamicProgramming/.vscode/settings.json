@@ -1,0 +1,11 @@
+{
+    "cSpell.words": [
+        "vvvi"
+    ],
+    "files.associations": {
+        "*html": "html",
+        "*.js": "javascript",
+        "vector": "cpp",
+        "iosfwd": "cpp"
+    }
+}
