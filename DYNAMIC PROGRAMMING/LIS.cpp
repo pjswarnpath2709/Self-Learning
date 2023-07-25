@@ -1,5 +1,4 @@
-#include<iostream>
-#include<algorithm>
+#include <bits/stdc++.h>
 using namespace std;
 int* lis(int* input, int n)
 {
